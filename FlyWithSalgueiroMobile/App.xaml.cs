@@ -1,12 +1,23 @@
-﻿namespace FlyWithSalgueiroMobile
+﻿using FlyWithSalgueiroMobile.Pages;
+using FlyWithSalgueiroMobile.Services;
+using FlyWithSalgueiroMobile.Validations;
+
+namespace FlyWithSalgueiroMobile
 {
     public partial class App : Application
     {
-        public App()
+        private readonly IApiService _apiService;
+        private readonly IValidator _validator;
+
+        public App(IApiService apiService, IValidator validator)
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            _apiService = apiService;
+            _validator = validator;
+
+            MainPage = new NavigationPage(new RegisterPage(apiService, validator));
+
         }
     }
 }

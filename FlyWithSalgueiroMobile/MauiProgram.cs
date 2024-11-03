@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FlyWithSalgueiroMobile.Services;
+using FlyWithSalgueiroMobile.Validations;
+using Microsoft.Extensions.Logging;
 
 namespace FlyWithSalgueiroMobile
 {
@@ -18,6 +20,10 @@ namespace FlyWithSalgueiroMobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddHttpClient();
+            builder.Services.AddSingleton<IApiService, ApiService>();
+            builder.Services.AddSingleton<IValidator, Validator>();
 
             return builder.Build();
         }
