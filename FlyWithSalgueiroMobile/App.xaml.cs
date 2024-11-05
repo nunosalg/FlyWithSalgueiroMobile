@@ -16,8 +16,8 @@ namespace FlyWithSalgueiroMobile
             _apiService = apiService;
             _validator = validator;
 
-            MainPage = new NavigationPage(new RegisterPage(apiService, validator));
-
+            /*MainPage = new AppShell(_apiService, _validator);*/
+            MainPage = new NavigationPage(new LoginPage(_apiService, _validator));
         }
     }
 }

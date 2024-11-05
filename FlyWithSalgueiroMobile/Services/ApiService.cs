@@ -102,6 +102,80 @@ namespace FlyWithSalgueiroMobile.Services
             }
         }
 
+        public async Task<ApiResponse<bool>> RecoverPassword(string email)
+        {
+            try
+            {
+                var recover = new RecoverPassword()
+                {
+                    Email = email,
+                };
+
+                var json = JsonSerializer.Serialize(recover, _serializerOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await PostRequest("api/Customers/RecoverPassword", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError($"Error sending HTTP requisition: {response.StatusCode}");
+                    return new ApiResponse<bool>
+                    {
+                        ErrorMessage = $"Error sending HTTP requisition: {response.StatusCode}"
+                    };
+                }
+
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<RecoverPassword>(jsonResult, _serializerOptions);
+
+                return new ApiResponse<bool> { Data = true };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error recovering password : {ex.Message}");
+                return new ApiResponse<bool> { ErrorMessage = ex.Message };
+            }
+        }
+
+        public async Task<ApiResponse<bool>> ResetPassword(string email, string token, string password, string confirm)
+        {
+            try
+            {
+                var reset = new ResetPassword()
+                {
+                    Email = email,
+                    Token = token,
+                    NewPassword = password,
+                    Confirm = confirm
+                };
+
+                var json = JsonSerializer.Serialize(reset, _serializerOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await PostRequest("api/Customers/ResetPassword", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError($"Error sending HTTP requisition: {response.StatusCode}");
+                    return new ApiResponse<bool>
+                    {
+                        ErrorMessage = $"Error sending HTTP requisition: {response.StatusCode}"
+                    };
+                }
+
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<ResetPassword>(jsonResult, _serializerOptions);
+
+                Preferences.Set("token", result!.Token);
+                Preferences.Set("email", result!.Email);
+
+                return new ApiResponse<bool> { Data = true };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error resetting password : {ex.Message}");
+                return new ApiResponse<bool> { ErrorMessage = ex.Message };
+            }
+        }
+
         private async Task<HttpResponseMessage> PostRequest(string uri, HttpContent content)
         {
             var urlAddress = _baseUrl + uri;

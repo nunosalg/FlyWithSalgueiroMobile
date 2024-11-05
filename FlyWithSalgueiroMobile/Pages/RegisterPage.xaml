@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Background}">
     
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
           RowSpacing="20"
           Margin="20,80,20,40">
 
@@ -57,7 +57,13 @@
                 x:Name="BtnSignup" 
                 Clicked="BtnSignup_Clicked"/>
 
-        <HorizontalStackLayout Grid.Row="4"
+        <ActivityIndicator Grid.Row="4" 
+                           x:Name="LoadingIndicator"
+                           HorizontalOptions="Center"
+                           IsVisible="False" 
+                           IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
+        
+        <HorizontalStackLayout Grid.Row="5"
                                Spacing="2" HorizontalOptions="Center"                      
                                VerticalOptions="EndAndExpand">
             

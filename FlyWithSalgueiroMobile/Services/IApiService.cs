@@ -6,5 +6,8 @@
 
         Task<ApiResponse<bool>> Login(string email, string password);
 
+        Task<ApiResponse<bool>> RecoverPassword(string email);
+
+        Task<ApiResponse<bool>> ResetPassword(string email, string token, string password, string confirm);
     }
 }

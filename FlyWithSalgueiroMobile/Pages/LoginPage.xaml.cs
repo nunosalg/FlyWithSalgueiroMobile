@@ -45,4 +45,9 @@ public partial class LoginPage : ContentPage
     {
         await Navigation.PushAsync(new RegisterPage(_apiService, _validator));
     }
+
+    private async void TapForgotPassword_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushAsync(new RecoverPasswordPage(_apiService, _validator));
+    }
 }
