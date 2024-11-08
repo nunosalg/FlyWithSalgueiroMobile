@@ -58,7 +58,7 @@
     </Style>
 
     <Style TargetType="CheckBox">
-        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="Color" Value="{StaticResource Background}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -76,7 +76,7 @@
     </Style>
 
     <Style TargetType="DatePicker">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColor}, Dark={StaticResource TextColorDark}}" />
+        <Setter Property="TextColor" Value="{StaticResource Black}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
@@ -123,7 +123,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource PlaceholderTextColor}, Dark={StaticResource PlaceholderTextColorDark}}" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray500}}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -170,7 +170,7 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorDarkerBackground}, Dark={StaticResource TextColorDarkerBackgroundDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Light}, Dark={StaticResource Black}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
@@ -212,8 +212,8 @@
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
-        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+        <Setter Property="TextColor" Value="{StaticResource Black}" />
+        <Setter Property="TitleColor" Value="{StaticResource Gray500}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
@@ -409,13 +409,13 @@
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}" />
-        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource SecondaryDarkText}}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource TextColorDarkerBackground}, Dark={StaticResource TextColorDarkerBackgroundDark}}" />
         <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
         <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
         <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
-        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
-        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Magenta}, Dark={StaticResource White}}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource TextColorDarkerBackground}, Dark={StaticResource TextColorDarkerBackgroundDark}}" />
         <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
     </Style>
 

@@ -57,7 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
+	  <None Remove="Resources\Images\about.png" />
+	  <None Remove="Resources\Images\account.png" />
+	  <None Remove="Resources\Images\defaultuser.jpg" />
+	  <None Remove="Resources\Images\flightshistory.png" />
+	  <None Remove="Resources\Images\fswbackground.jpg" />
+	  <None Remove="Resources\Images\futureflights.png" />
 	  <None Remove="Resources\Images\fwslogo.png" />
+	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Splash\fwslogo.png" />
 	</ItemGroup>
 
@@ -73,6 +81,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AccountPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\BuyTicketPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ChangePasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FlightsHistoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FutureFlightsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\HomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

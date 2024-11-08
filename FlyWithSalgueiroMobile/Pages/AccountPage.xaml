@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlyWithSalgueiroMobile.Pages.AccountPage"
+             Title="Account Page">
+
+    <Grid RowDefinitions="Auto,5*,Auto,1*" 
+          RowSpacing="0"
+          BackgroundColor="{StaticResource Background}">
+
+        <VerticalStackLayout Grid.Row="0"
+                             VerticalOptions="Start"
+                             Spacing="1"
+                             Padding="20">
+
+            <ImageButton Source="defaultuser.jpg"
+                         HeightRequest="120"
+                         WidthRequest="120"
+                         Aspect="AspectFill"
+                         CornerRadius="30"
+                         HorizontalOptions="Center" 
+                         x:Name="ImgBtnProfile"
+                         Clicked="ImgBtnProfile_Clicked"/>
+
+            <Label x:Name="LblUserName"
+                   HorizontalOptions="Center"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Margin="20"
+                             Spacing="20">
+            <Entry Placeholder="First Name"
+                   x:Name="EntFirstName"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+
+            <Entry Placeholder="Last Name"
+                   x:Name="EntLastName"
+                   TextColor="Black"
+                   FontAttributes="Bold"/>
+            
+            <DatePicker x:Name="DateOfBirthPicker"
+                        Format="D" 
+                        MinimumDate="1900-01-01"
+                        FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="10">
+
+                <Label Text="&#xf007;"
+                       FontFamily="FontAwesome"
+                       VerticalOptions="Center"
+                       Margin="5,0"/>
+                <Label Text="Update Info"
+                       FontAttributes="Bold"
+                       FontSize="Small"/>
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapChangeInfo" Tapped="TapChangeInfo_Tapped" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+            <Border HeightRequest="1" BackgroundColor="Gray" Margin="5,0"/>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="&#xf084;"
+                       FontFamily="FontAwesome"
+                       VerticalOptions="Center"
+                       Margin="5,0"/>
+                <Label Text="Change Password"
+                       FontAttributes="Bold"
+                       FontSize="Small" />
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapChangePassword" Tapped="TapChangePassword_Tapped" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+
+        <ActivityIndicator Grid.Row="2" 
+           x:Name="LoadingIndicator"
+           HorizontalOptions="Center"
+           IsVisible="False" 
+           IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
+
+        <ImageButton Grid.Row="3"
+            Source="logout.png"
+            HeightRequest="60"
+            WidthRequest="60"
+            Padding="5"
+            ToolTipProperties.Text="Logout"
+            HorizontalOptions="Center"
+            BackgroundColor="Transparent"
+            x:Name="BtnLogout"
+            Clicked="BtnLogout_Clicked"/>
+    </Grid>
+</ContentPage>

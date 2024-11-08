@@ -7,8 +7,8 @@
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
     <!-- Added Colours -->
-    
-    <Color x:Key="Background">#2A3B67</Color>
+
+    <Color x:Key="Background">#2A3967</Color>
     
     <Color x:Key="Light">White</Color>
     <Color x:Key="Dark">#1E1E1E</Color>

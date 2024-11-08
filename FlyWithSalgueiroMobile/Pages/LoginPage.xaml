@@ -6,7 +6,7 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Background}">
     
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*"
           RowSpacing="20"
           Margin="20,150,20,40">
 
@@ -41,7 +41,23 @@
                 x:Name="BtnSignIn" 
                 BackgroundColor="{StaticResource ButtonPrimary}"
                 Clicked="BtnSignIn_Clicked"/>
-
+        
+        <!--<Frame Grid.Row="3"
+               Padding="0"
+               CornerRadius="10"
+               BorderColor="Transparent"
+               BackgroundColor="{StaticResource ButtonPrimary}">
+            <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
+                <Label Text="&#xf2f6;"
+                       FontFamily="FontAwesome" 
+                       VerticalOptions="Center"
+                       TextColor="{AppThemeBinding Light={StaticResource TextColorDarkerBackground}, Dark={StaticResource TextColorDarkerBackgroundDark}}"/>
+                <Label Text="Login"
+                       FontSize="Medium"
+                        />
+            </HorizontalStackLayout>
+        </Frame>-->
+        
         <Label Grid.Row="4"
                Text="Forgot your password ? " 
                HorizontalOptions="Center">
