@@ -4,7 +4,7 @@
              x:Class="FlyWithSalgueiroMobile.Pages.AccountPage"
              Title="Account">
 
-    <Grid RowDefinitions="Auto,5*,Auto,1*" 
+    <Grid RowDefinitions="Auto,5*,Auto" 
           RowSpacing="0"
           BackgroundColor="{StaticResource Background}">
 

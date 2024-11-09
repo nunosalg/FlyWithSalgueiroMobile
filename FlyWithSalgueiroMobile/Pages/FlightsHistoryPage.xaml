@@ -2,11 +2,77 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlyWithSalgueiroMobile.Pages.FlightsHistoryPage"
-             Title="Flights History Page">
-    <VerticalStackLayout>
-        <Label 
-            Text="Flights History Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Flights History">
+
+    <ScrollView>
+        <Grid>
+            <Image Source="fswbackground.jpg"
+                   Aspect="AspectFill"
+                   IsVisible="True" />
+            <Grid RowDefinitions="Auto,*"
+                  RowSpacing="20"
+                  Margin="20,50,20,40">
+
+                <VerticalStackLayout Grid.Row="0"
+                                     Spacing="2">
+
+                    <Label Text="Tickets History"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           FontSize="Large"/>
+                </VerticalStackLayout>
+
+                <CollectionView x:Name="FlightsHistory"
+                                Grid.Row="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10"
+                                   Margin="0,10"
+                                   CornerRadius="10"
+                                   BorderColor="LightGray">
+                                <StackLayout>
+                                    <Label Text="{Binding FlightNumber}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" HorizontalOptions="Center" FontAttributes="Bold"/>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf5b0;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
+                                        <Label Text="{Binding Origin}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding OriginAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf5af;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
+                                        <Label Text="{Binding Destination}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding DestinationAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf133;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>
+                                        <Label Text="{Binding DepartureDateTime, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf007;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>
+                                        <Label Text="{Binding PassengerName}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=" (ID: " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding PassengerId}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=")" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf6c0;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>
+                                        <Label Text="{Binding Seat}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf153;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,12,0"/>
+                                        <Label Text="{Binding Price}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Label Text="&#xf129;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,15,0"/>
+                                        <Label Text="{Binding Status}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>

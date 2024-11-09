@@ -19,9 +19,6 @@
     <Color x:Key="TextColor">Black</Color>
     <Color x:Key="TextColorDark">White</Color>
 
-    <Color x:Key="TextColorDarkerBackground">White</Color>
-    <Color x:Key="TextColorDarkerBackgroundDark">Black</Color>
-
     <Color x:Key="ButtonPrimary">#28a745</Color>
     
     <!-- Added Colours -->

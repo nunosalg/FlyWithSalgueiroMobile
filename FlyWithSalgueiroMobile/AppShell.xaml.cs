@@ -21,8 +21,8 @@ namespace FlyWithSalgueiroMobile
         private void ConfigureShell()
         {
             var homePage = new HomePage(_apiService);
-            var futureFlightsPage = new FutureFlightsPage();
-            var flightsHistoryPage = new FlightsHistoryPage();
+            var futureFlightsPage = new FutureFlightsPage(_apiService);
+            var flightsHistoryPage = new FlightsHistoryPage(_apiService);
             var accountPage = new AccountPage(_apiService, _validator);
             var aboutPage = new AboutPage();
 
@@ -31,7 +31,7 @@ namespace FlyWithSalgueiroMobile
                 Items =
                 {
                     new ShellContent { Title = "Home",Icon = "home",Content = homePage  },
-                    new ShellContent { Title = "Flights",Icon = "futureflights",Content = futureFlightsPage },
+                    new ShellContent { Title = "My Flights",Icon = "futureflights",Content = futureFlightsPage },
                     new ShellContent { Title = "History",Icon = "flightshistory",Content = flightsHistoryPage },
                     new ShellContent { Title = "Account",Icon = "account",Content = accountPage },
                     new ShellContent { Title = "About",Icon = "about",Content = aboutPage }

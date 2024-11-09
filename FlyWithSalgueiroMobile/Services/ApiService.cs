@@ -364,6 +364,22 @@ namespace FlyWithSalgueiroMobile.Services
             return await GetAsync<UserInfo>(endpoint);
         }
 
+        public async Task<(IEnumerable<TicketHistory>? TicketsHistory, string? ErrorMessage)> GetFlightsHistory()
+        {
+            AddAuthorizationHeader();
+
+            string endpoint = "api/customerflights/flightshistory";
+            return await GetAsync<IEnumerable<TicketHistory>>(endpoint);
+        }
+
+        public async Task<(IEnumerable<Ticket>? Tickets, string? ErrorMessage)> GetFutureFlights()
+        {
+            AddAuthorizationHeader();
+
+            string endpoint = "api/customerflights/futureflights";
+            return await GetAsync<IEnumerable<Ticket>>(endpoint);
+        }
+
         private async Task<(T? Data, string? ErrorMessage)> GetAsync<T>(string endpoint)
         {
             try

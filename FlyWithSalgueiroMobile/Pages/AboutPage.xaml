@@ -32,6 +32,7 @@
         
         <HorizontalStackLayout Grid.Row="1"
                                Spacing="20"
+                               Margin="0,10"
                                HorizontalOptions="Center"
                                VerticalOptions="EndAndExpand">
 
@@ -40,6 +41,16 @@
                          WidthRequest="30"
                          x:Name="ImgBtnLinkedIn"
                          Clicked="ImgBtnLinkedIn_Clicked">
+                <ImageButton.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+
+            <ImageButton Source="github.svg"
+                         HeightRequest="30"
+                         WidthRequest="30"
+                         x:Name="ImgBtnGitHub"
+                         Clicked="ImgBtnGitHub_Clicked">
                 <ImageButton.Behaviors>
                     <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
                 </ImageButton.Behaviors>

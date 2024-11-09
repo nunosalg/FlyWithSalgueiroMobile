@@ -9,10 +9,10 @@ public partial class AboutPage : ContentPage
 
     private async void ImgBtnLinkedIn_Clicked(object sender, EventArgs e)
     {
-        var instagramUrl = "https://www.linkedin.com/in/nuno-salgueiro-9b3a7810b/";
+        var linkedinUrl = "https://www.linkedin.com/in/nuno-salgueiro-9b3a7810b/";
 
         // Checks if it's a valid URL and if it can be opened
-        if (Uri.TryCreate(instagramUrl, UriKind.Absolute, out var uri))
+        if (Uri.TryCreate(linkedinUrl, UriKind.Absolute, out var uri))
         {
             await Launcher.OpenAsync(uri);
         }
@@ -26,7 +26,6 @@ public partial class AboutPage : ContentPage
     {
         var instagramUrl = "https://www.instagram.com/nunosalgueiro23/";
 
-        // Checks if it's a valid URL and if it can be opened
         if (Uri.TryCreate(instagramUrl, UriKind.Absolute, out var uri))
         {
             await Launcher.OpenAsync(uri);
@@ -34,6 +33,20 @@ public partial class AboutPage : ContentPage
         else
         {
             await DisplayAlert("Error", "Unable to open Instagram page", "Ok");
+        }
+    }
+
+    private async void ImgBtnGitHub_Clicked(object sender, EventArgs e)
+    {
+        var githubUrl = "https://github.com/nunosalg";
+
+        if (Uri.TryCreate(githubUrl, UriKind.Absolute, out var uri))
+        {
+            await Launcher.OpenAsync(uri);
+        }
+        else
+        {
+            await DisplayAlert("Error", "Unable to open GitHub page", "Ok");
         }
     }
 }

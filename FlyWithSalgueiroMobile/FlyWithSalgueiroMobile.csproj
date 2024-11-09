@@ -65,6 +65,7 @@
 	  <None Remove="Resources\Images\fswbackground.jpg" />
 	  <None Remove="Resources\Images\futureflights.png" />
 	  <None Remove="Resources\Images\fwslogo.png" />
+	  <None Remove="Resources\Images\github.svg" />
 	  <None Remove="Resources\Images\home.png" />
 	  <None Remove="Resources\Images\instagram.svg" />
 	  <None Remove="Resources\Images\linkedin.svg" />

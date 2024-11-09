@@ -25,5 +25,9 @@ namespace FlyWithSalgueiroMobile.Services
         Task<(IEnumerable<Flight>? SearchedFlights, string? ErrorMessage)> GetSearchedFlights(int? originId, int? destinationId, DateTime? departure);
 
         Task<(UserInfo? UserInfo, string? ErrorMessage)> GetUserInfo();
+
+        Task<(IEnumerable<TicketHistory>? TicketsHistory, string? ErrorMessage)> GetFlightsHistory();
+
+        Task<(IEnumerable<Ticket>? Tickets, string? ErrorMessage)> GetFutureFlights();
     }
 }
