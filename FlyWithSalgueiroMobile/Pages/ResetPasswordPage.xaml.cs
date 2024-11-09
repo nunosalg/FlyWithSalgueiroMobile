@@ -17,15 +17,22 @@ public partial class ResetPasswordPage : ContentPage
         _email = email;
     }
 
-    private async void BtnResetPassword_Clicked(object sender, EventArgs e)
+    private async void TapBackToLogin_Tapped(object sender, TappedEventArgs e)
+    {
+        await Navigation.PushAsync(new LoginPage(_apiService, _validator));
+    }
+
+    private async void TapReset_Tapped(object sender, TappedEventArgs e)
     {
         LoadingIndicator.IsVisible = true;
-        BtnResetPassword.IsEnabled = false;
+        FrameReset.IsEnabled = false;
 
         var token = EntToken.Text;
 
         if (string.IsNullOrEmpty(token))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameReset.IsEnabled = true;
             await DisplayAlert("Error", "Type your token", "Cancel");
             return;
         }
@@ -34,6 +41,8 @@ public partial class ResetPasswordPage : ContentPage
 
         if (string.IsNullOrEmpty(password))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameReset.IsEnabled = true;
             await DisplayAlert("Error", "Type your password", "Cancel");
             return;
         }
@@ -42,18 +51,24 @@ public partial class ResetPasswordPage : ContentPage
 
         if (string.IsNullOrEmpty(confirm))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameReset.IsEnabled = true;
             await DisplayAlert("Error", "Confirm your password", "Cancel");
             return;
         }
 
         if (password.Length < 6)
         {
+            LoadingIndicator.IsVisible = false;
+            FrameReset.IsEnabled = true;
             await DisplayAlert("Error", "Password must contain at least 6 characters", "Cancel");
             return;
         }
 
         if (confirm != password)
         {
+            LoadingIndicator.IsVisible = false;
+            FrameReset.IsEnabled = true;
             await DisplayAlert("Error", "Confirm doesn't match with password", "Cancel");
             return;
         }
@@ -71,11 +86,6 @@ public partial class ResetPasswordPage : ContentPage
         }
 
         LoadingIndicator.IsVisible = false;
-        BtnResetPassword.IsEnabled = true;
-    }
-
-    private async void TapBackToLogin_Tapped(object sender, TappedEventArgs e)
-    {
-        await Navigation.PushAsync(new LoginPage(_apiService, _validator));
+        FrameReset.IsEnabled = true;
     }
 }

@@ -15,16 +15,23 @@ public partial class LoginPage : ContentPage
         _validator = validator;
     }
 
-    private async void BtnSignIn_Clicked(object sender, EventArgs e)
+    private async void TapLogin_Tapped(object sender, TappedEventArgs e)
     {
+        LoadingIndicator.IsVisible = true;
+        FrameLogin.IsEnabled = false;
+
         if (string.IsNullOrEmpty(EntEmail.Text))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameLogin.IsEnabled = true;
             await DisplayAlert("Error", "Type your email", "Cancel");
             return;
         }
 
         if (string.IsNullOrEmpty(EntPassword.Text))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameLogin.IsEnabled = true;
             await DisplayAlert("Error", "Type your password", "Cancel");
             return;
         }
@@ -39,6 +46,9 @@ public partial class LoginPage : ContentPage
         {
             await DisplayAlert("Error", "Something went wrong", "Cancel");
         }
+
+        LoadingIndicator.IsVisible = false;
+        FrameLogin.IsEnabled = true;
     }
 
     private async void TapRegister_Tapped(object sender, TappedEventArgs e)

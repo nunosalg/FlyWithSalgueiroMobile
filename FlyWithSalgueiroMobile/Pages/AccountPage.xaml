@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlyWithSalgueiroMobile.Pages.AccountPage"
-             Title="Account Page">
+             Title="Account">
 
     <Grid RowDefinitions="Auto,5*,Auto,1*" 
           RowSpacing="0"
@@ -24,28 +24,36 @@
 
             <Label x:Name="LblUserName"
                    HorizontalOptions="Center"
-                   TextColor="Black"
                    FontAttributes="Bold"/>
 
         </VerticalStackLayout>
 
         <VerticalStackLayout Grid.Row="1"
                              Margin="20"
-                             Spacing="20">
-            <Entry Placeholder="First Name"
-                   x:Name="EntFirstName"
-                   TextColor="Black"
-                   FontAttributes="Bold"/>
-
-            <Entry Placeholder="Last Name"
-                   x:Name="EntLastName"
-                   TextColor="Black"
-                   FontAttributes="Bold"/>
+                             Spacing="10">
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Placeholder="First Name"
+                       x:Name="EntFirstName"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                       FontAttributes="Bold"/>
+            </Frame>
             
-            <DatePicker x:Name="DateOfBirthPicker"
-                        Format="D" 
-                        MinimumDate="1900-01-01"
-                        FontAttributes="Bold"/>
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Placeholder="Last Name"
+                       x:Name="EntLastName"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="0">
+                <DatePicker x:Name="DateOfBirthPicker"
+                            Format="D" 
+                            MinimumDate="1900-01-01"
+                            FontAttributes="Bold"
+                            TextColor="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource White}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"/>
+            </Frame>
+
             <HorizontalStackLayout Spacing="10">
 
                 <Label Text="&#xf007;"
@@ -62,6 +70,30 @@
 
             <Border HeightRequest="1" BackgroundColor="Gray" Margin="5,0"/>
 
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Placeholder="Current password"
+                       IsPassword="True"
+                       x:Name="EntCurrentPassword"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Placeholder="New password"
+                       IsPassword="True"
+                       x:Name="EntNewPassword"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Placeholder="Confirm password"
+                       IsPassword="True"
+                       x:Name="EntConfirmPassword"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                       FontAttributes="Bold"/>
+            </Frame>
+
             <HorizontalStackLayout Spacing="10">
                 <Label Text="&#xf084;"
                        FontFamily="FontAwesome"
@@ -75,6 +107,20 @@
                 </HorizontalStackLayout.GestureRecognizers>
             </HorizontalStackLayout>
 
+            <Border HeightRequest="1" BackgroundColor="Gray" Margin="5,0"/>
+
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="&#xf2f5;"
+                       FontFamily="FontAwesome"
+                       VerticalOptions="Center"
+                       Margin="5,0"/>
+                <Label Text="Logout"
+                       FontAttributes="Bold"
+                       FontSize="Small" />
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapLogout" Tapped="TapLogout_Tapped" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <ActivityIndicator Grid.Row="2" 
@@ -82,16 +128,6 @@
            HorizontalOptions="Center"
            IsVisible="False" 
            IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
-
-        <ImageButton Grid.Row="3"
-            Source="logout.png"
-            HeightRequest="60"
-            WidthRequest="60"
-            Padding="5"
-            ToolTipProperties.Text="Logout"
-            HorizontalOptions="Center"
-            BackgroundColor="Transparent"
-            x:Name="BtnLogout"
-            Clicked="BtnLogout_Clicked"/>
+        
     </Grid>
 </ContentPage>

@@ -22,9 +22,14 @@ public partial class RegisterPage : ContentPage
         DateOfBirthPicker.MaximumDate = DateTime.Today;
     }
 
-    private async void BtnSignup_Clicked(object sender, EventArgs e)
+    private async void TapLogin_Tapped(object sender, TappedEventArgs e)
     {
-        BtnSignup.IsEnabled = false;
+        await Navigation.PushAsync(new LoginPage(_apiService, _validator));
+    }
+
+    private async void TapRegister_Tapped(object sender, TappedEventArgs e)
+    {
+        FrameRegister.IsEnabled = false;
         LoadingIndicator.IsVisible = true;
         try
         {
@@ -58,12 +63,7 @@ public partial class RegisterPage : ContentPage
         finally
         {
             LoadingIndicator.IsVisible = false;
-            BtnSignup.IsEnabled = true;
+            FrameRegister.IsEnabled = true;
         }
-    }
-
-    private async void TapLogin_Tapped(object sender, TappedEventArgs e)
-    {
-        await Navigation.PushAsync(new LoginPage(_apiService, _validator));
     }
 }

@@ -33,32 +33,35 @@
                                HorizontalOptions="Center"/>
 
                         <Label Text="Select origin"
-                               TextColor="Black"
                                FontAttributes="Bold"
                                Margin="5,11">
                         </Label>
-                        <Picker x:Name="originPicker"
-                                FontAttributes="Bold"
-                                ItemDisplayBinding="{Binding Name}"/>
+                        <Frame CornerRadius="10" Padding="0">
+                            <Picker x:Name="originPicker"
+                                    FontAttributes="Bold"
+                                    ItemDisplayBinding="{Binding Name}"/>
+                        </Frame>
+                        
 
                         <Label Text="Select destination"
-                               TextColor="Black"
                                FontAttributes="Bold"
                                Margin="5,11">
                         </Label>
-                        <Picker x:Name="destinationPicker"
-                                FontAttributes="Bold"
-                                ItemDisplayBinding="{Binding Name}"/>
+                        <Frame CornerRadius="10" Padding="0">
+                            <Picker x:Name="destinationPicker"
+                                    FontAttributes="Bold"
+                                    ItemDisplayBinding="{Binding Name}"/>
+                        </Frame>
 
-                        
                         <HorizontalStackLayout>
                             <Label Text="Search by date"
-                                   TextColor="Black"
                                    FontAttributes="Bold"
                                    Margin="5,11"/>
                             <CheckBox x:Name="dateCheckbox" IsChecked="True"/>
                         </HorizontalStackLayout>
-                        <DatePicker x:Name="datePicker" FontAttributes="Bold" BindingContext=""/>
+                        <Frame CornerRadius="10" Padding="0">
+                            <DatePicker x:Name="datePicker" FontAttributes="Bold"/>
+                        </Frame>
 
                     </VerticalStackLayout>
 
@@ -90,38 +93,28 @@
                                    CornerRadius="10"
                                    BorderColor="LightGray">
                                 <StackLayout>
+                                    <Label Text="{Binding FlightNumber}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" HorizontalOptions="Center" FontAttributes="Bold"/>
                                     <HorizontalStackLayout>
-                                        <Label Text="Flight Number: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                        <Label Text="{Binding FlightNumber}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                    </HorizontalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="Origin: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="&#xf5b0;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
                                         <Label Text="{Binding Origin.Name}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                    </HorizontalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="Airport: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                         <Label Text="{Binding OriginAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>
-                                        <Label Text="Destination: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="&#xf5af;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
                                         <Label Text="{Binding Destination.Name}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                    </HorizontalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="Airport: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                         <Label Text="{Binding DestinationAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>
-                                        <Label Text="Departure: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="&#xf133;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>
                                         <Label Text="{Binding DepartureDateTime, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>
-                                        <Label Text="Duration: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="&#xf017;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,8,0"/>
                                         <Label Text="{Binding FlightDuration}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
-                                    <HorizontalStackLayout>
-                                        <Label Text="Available seats: " FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                        <Label Text="{Binding AvailableSeatsNumber}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                    </HorizontalStackLayout>
+                                    
                                     <Frame Padding="0"
                                            Margin="0,5,0,0"
                                            CornerRadius="10"

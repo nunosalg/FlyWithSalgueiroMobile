@@ -16,6 +16,7 @@ public partial class AccountPage : ContentPage
         LblUserName.Text = Preferences.Get("username", string.Empty);
         EntFirstName.Text = Preferences.Get("firstname", string.Empty);
         EntLastName.Text = Preferences.Get("lastname", string.Empty);
+        EntCurrentPassword.Text = Preferences.Get("password", string.Empty);
 
         _apiService = apiService;
         _validator = validator;
@@ -155,15 +156,59 @@ public partial class AccountPage : ContentPage
         }
     }
 
-    private void BtnLogout_Clicked(object sender, EventArgs e)
+    private async void TapChangePassword_Tapped(object sender, TappedEventArgs e)
     {
-        Preferences.Set("accesstoken", string.Empty);
-        Application.Current!.MainPage = new NavigationPage(new LoginPage(_apiService, _validator));
-    }
+        LoadingIndicator.IsVisible = true;
+        var currentPassword = EntCurrentPassword.Text;
 
-    private void TapChangePassword_Tapped(object sender, TappedEventArgs e)
-    {
-        Navigation.PushAsync(new ChangePasswordPage(_apiService, _validator));
+        if (string.IsNullOrEmpty(currentPassword))
+        {
+            await DisplayAlert("Error", "Type your current password", "Cancel");
+            return;
+        }
+
+        var newPassword = EntNewPassword.Text;
+
+        if (string.IsNullOrEmpty(newPassword))
+        {
+            await DisplayAlert("Error", "Type your new password", "Cancel");
+            return;
+        }
+
+        var confirm = EntConfirmPassword.Text;
+
+        if (string.IsNullOrEmpty(confirm))
+        {
+            await DisplayAlert("Error", "Confirm your password", "Cancel");
+            return;
+        }
+
+        if (newPassword.Length < 6)
+        {
+            await DisplayAlert("Error", "New password must contain at least 6 characters", "Cancel");
+            return;
+        }
+
+        if (confirm != newPassword)
+        {
+            await DisplayAlert("Error", "Confirm doesn't match with new password", "Cancel");
+            return;
+        }
+
+        var response = await _apiService.ChangePassword(currentPassword, newPassword, confirm);
+
+        if (!response.HasError)
+        {
+            await DisplayAlert("Reset", "Password changed successfully!", "Ok");
+        }
+        else
+        {
+            await DisplayAlert("Error", "Something went wrong", "Cancel");
+        }
+
+        EntNewPassword.Text = string.Empty;
+        EntConfirmPassword.Text = string.Empty;
+        LoadingIndicator.IsVisible = false;
     }
 
     private async void TapChangeInfo_Tapped(object sender, TappedEventArgs e)
@@ -203,6 +248,12 @@ public partial class AccountPage : ContentPage
         }
 
         LoadingIndicator.IsVisible = false;
+    }
+
+    private void TapLogout_Tapped(object sender, TappedEventArgs e)
+    {
+        Preferences.Set("accesstoken", string.Empty);
+        Application.Current!.MainPage = new NavigationPage(new LoginPage(_apiService, _validator));
     }
 
     private async Task DisplayLoginPage()

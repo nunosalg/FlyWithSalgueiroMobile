@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlyWithSalgueiroMobile.Pages.LoginPage"
-             Title="Login Page"
+             Title="Login"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Background}">
-    
+
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*"
           RowSpacing="20"
           Margin="20,150,20,40">
@@ -15,7 +15,7 @@
                Aspect="AspectFit"
                HeightRequest="100"
                WidthRequest="100" />
-        
+
         <Label Grid.Row="1"
                Text="Login"
                FontAttributes="Bold"
@@ -35,47 +35,45 @@
             </VerticalStackLayout>
         </Frame>
 
-        <Button Grid.Row="3"
-                Text="Login"
-                FontSize="Medium"
-                x:Name="BtnSignIn" 
-                BackgroundColor="{StaticResource ButtonPrimary}"
-                Clicked="BtnSignIn_Clicked"/>
-        
-        <!--<Frame Grid.Row="3"
+        <Frame Grid.Row="3"
+               x:Name="FrameLogin"
                Padding="0"
                CornerRadius="10"
-               BorderColor="Transparent"
-               BackgroundColor="{StaticResource ButtonPrimary}">
+               BackgroundColor="{StaticResource ButtonPrimary}"
+               BorderColor="Transparent">
             <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
                 <Label Text="&#xf2f6;"
-                       FontFamily="FontAwesome" 
-                       VerticalOptions="Center"
-                       TextColor="{AppThemeBinding Light={StaticResource TextColorDarkerBackground}, Dark={StaticResource TextColorDarkerBackgroundDark}}"/>
-                <Label Text="Login"
-                       FontSize="Medium"
-                        />
+                       FontFamily="FontAwesome"
+                       VerticalOptions="Center" />
+                <Label Text="Login" VerticalOptions="Center"/>
             </HorizontalStackLayout>
-        </Frame>-->
-        
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer x:Name="TapLogin" Tapped="TapLogin_Tapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
         <Label Grid.Row="4"
                Text="Forgot your password ? " 
                HorizontalOptions="Center">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer x:Name="TapForgotPassword"
-                  Tapped="TapForgotPassword_Tapped"/>
+                <TapGestureRecognizer x:Name="TapForgotPassword" Tapped="TapForgotPassword_Tapped"/>
             </Label.GestureRecognizers>
         </Label>
-        
-        <HorizontalStackLayout Grid.Row="5"
+
+        <ActivityIndicator Grid.Row="5" 
+                   x:Name="LoadingIndicator"
+                   HorizontalOptions="Center"
+                   IsVisible="False" 
+                   IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
+
+        <HorizontalStackLayout Grid.Row="6"
                                Spacing="2"
                                HorizontalOptions="Center"
                                VerticalOptions="EndAndExpand">
             <Label Text="Don't have an account ? " />
             <Label Text="Register here" TextColor="{StaticResource ButtonPrimary}" FontAttributes="Bold">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer x:Name="TapRegister"
-                                  Tapped="TapRegister_Tapped"/>
+                    <TapGestureRecognizer x:Name="TapRegister" Tapped="TapRegister_Tapped"/>
                 </Label.GestureRecognizers>
             </Label>
         </HorizontalStackLayout>

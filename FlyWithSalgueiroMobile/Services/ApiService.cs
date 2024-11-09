@@ -182,6 +182,8 @@ namespace FlyWithSalgueiroMobile.Services
         {
             try
             {
+                AddAuthorizationHeader();
+
                 var content = new MultipartFormDataContent();
                 content.Add(new ByteArrayContent(imageArray), "image", "image.jpg");
                 var response = await PostRequest("api/customers/uploaduserimage", content);
@@ -200,6 +202,46 @@ namespace FlyWithSalgueiroMobile.Services
             catch (Exception ex)
             {
                 _logger.LogError($"Error uploading user image: {ex.Message}");
+                return new ApiResponse<bool> { ErrorMessage = ex.Message };
+            }
+        }
+
+        public async Task<ApiResponse<bool>> ChangePassword(string oldPassword, string newPassword, string confirm)
+        {
+            try
+            {
+                AddAuthorizationHeader();
+
+                var change = new ChangePassword()
+                {
+                    OldPassword = oldPassword,
+                    NewPassword = newPassword,
+                    Confirm = confirm
+                };
+
+                var json = JsonSerializer.Serialize(change, _serializerOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await PostRequest("api/Customers/ChangePassword", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError($"Error sending HTTP requisition: {response.StatusCode}");
+                    return new ApiResponse<bool>
+                    {
+                        ErrorMessage = $"Error sending HTTP requisition: {response.StatusCode}"
+                    };
+                }
+
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<ChangePassword>(jsonResult, _serializerOptions);
+
+                Preferences.Set("password", result!.NewPassword);
+
+                return new ApiResponse<bool> { Data = true };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error changing password : {ex.Message}");
                 return new ApiResponse<bool> { ErrorMessage = ex.Message };
             }
         }
@@ -273,6 +315,8 @@ namespace FlyWithSalgueiroMobile.Services
 
         public async Task<(ProfileImage? ProfileImage, string? ErrorMessage)> GetUserProfileImage()
         {
+            AddAuthorizationHeader();
+
             string endpoint = "api/customers/userimage";
             return await GetAsync<ProfileImage>(endpoint);
         }
@@ -314,6 +358,8 @@ namespace FlyWithSalgueiroMobile.Services
 
         public async Task<(UserInfo? UserInfo, string? ErrorMessage)> GetUserInfo()
         {
+            AddAuthorizationHeader();
+
             string endpoint = "api/customers/userinfo";
             return await GetAsync<UserInfo>(endpoint);
         }
@@ -322,8 +368,6 @@ namespace FlyWithSalgueiroMobile.Services
         {
             try
             {
-                AddAuthorizationHeader();
-
                 var url = AppConfig.BaseUrl + endpoint;
                 var response = await _httpClient.GetAsync(url);
 

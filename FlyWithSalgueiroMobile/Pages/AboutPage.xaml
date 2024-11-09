@@ -1,25 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="FlyWithSalgueiroMobile.Pages.AboutPage"
-             Title="About Page"
+             Title="About"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Background}">
- 
-    <VerticalStackLayout VerticalOptions="Center">
 
-        <Image Source="fwslogo.png"
-           Aspect="AspectFit"
-           HeightRequest="150"
-           WidthRequest="150"
-           HorizontalOptions="Center"/>
+    <Grid RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0"
+                             Spacing="2" 
+                             VerticalOptions="Center">
 
-        <Label Text="&#xA9; Nuno Salgueiro"
-               HorizontalOptions="Center"/>
-        <Label Text="24/11/2024"
-               HorizontalOptions="Center"/>
-        <Label Text="1.0.0"
-               HorizontalOptions="Center"/>
+            <Image Source="fwslogo.png"
+                   Aspect="AspectFit"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   HorizontalOptions="Center"/>
 
-    </VerticalStackLayout>
+            <Label Text="&#xA9; Nuno Salgueiro"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            <Label Text="24/11/2024"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            <Label Text="1.0.0"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+
+        </VerticalStackLayout>
+        
+        <HorizontalStackLayout Grid.Row="1"
+                               Spacing="20"
+                               HorizontalOptions="Center"
+                               VerticalOptions="EndAndExpand">
+
+            <ImageButton Source="linkedin.svg"
+                         HeightRequest="30"
+                         WidthRequest="30"
+                         x:Name="ImgBtnLinkedIn"
+                         Clicked="ImgBtnLinkedIn_Clicked">
+                <ImageButton.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+
+            <ImageButton Source="instagram.svg"
+                         HeightRequest="30"
+                         WidthRequest="30"
+                         x:Name="ImgBtnInstagram"
+                         Clicked="ImgBtnInstagram_Clicked">
+                <ImageButton.Behaviors>
+                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
+                </ImageButton.Behaviors>
+            </ImageButton>
+           
+        </HorizontalStackLayout>
+    </Grid>
+    
 </ContentPage>

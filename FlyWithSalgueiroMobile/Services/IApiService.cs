@@ -16,6 +16,8 @@ namespace FlyWithSalgueiroMobile.Services
 
         Task<ApiResponse<bool>> UpdateUserInfo(string firstName, string lastName, DateTime birthDate);
 
+        Task<ApiResponse<bool>> ChangePassword(string oldPassword, string newPassword, string confirm);
+
         Task<(ProfileImage? ProfileImage, string? ErrorMessage)> GetUserProfileImage();
 
         Task<(IEnumerable<City>? Cities, string? ErrorMessage)> GetCities();

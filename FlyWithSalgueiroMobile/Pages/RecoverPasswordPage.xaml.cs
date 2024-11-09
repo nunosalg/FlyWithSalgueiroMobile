@@ -20,15 +20,17 @@ public partial class RecoverPasswordPage : ContentPage
         await Navigation.PushAsync(new LoginPage(_apiService, _validator));
     }
 
-    private async void BtnRecoverPassword_Clicked(object sender, EventArgs e)
+    private async void TapRecover_Tapped(object sender, TappedEventArgs e)
     {
         LoadingIndicator.IsVisible = true;
-        BtnRecoverPassword.IsEnabled = false;
+        FrameRecover.IsEnabled = false;
 
         var email = EntEmail.Text;
 
         if (string.IsNullOrEmpty(email))
         {
+            LoadingIndicator.IsVisible = false;
+            FrameRecover.IsEnabled = true;
             await DisplayAlert("Error", "Type your email", "Cancel");
             return;
         }
@@ -46,6 +48,6 @@ public partial class RecoverPasswordPage : ContentPage
         }
 
         LoadingIndicator.IsVisible = false;
-        BtnRecoverPassword.IsEnabled = true;
+        FrameRecover.IsEnabled = true;
     }
 }

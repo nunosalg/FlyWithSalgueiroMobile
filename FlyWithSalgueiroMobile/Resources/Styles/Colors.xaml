@@ -23,7 +23,7 @@
     <Color x:Key="TextColorDarkerBackgroundDark">Black</Color>
 
     <Color x:Key="ButtonPrimary">#28a745</Color>
-
+    
     <!-- Added Colours -->
     
     <Color x:Key="Primary">#512BD4</Color>

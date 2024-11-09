@@ -50,12 +50,22 @@
             </VerticalStackLayout>
         </Frame>
 
-        <Button Grid.Row="3"
-                Text="Register"
-                FontSize="Medium"
-                BackgroundColor="{StaticResource ButtonPrimary}"
-                x:Name="BtnSignup" 
-                Clicked="BtnSignup_Clicked"/>
+        <Frame Grid.Row="3"
+               x:Name="FrameRegister"
+               Padding="0"
+               CornerRadius="10"
+               BackgroundColor="{StaticResource ButtonPrimary}"
+               BorderColor="Transparent">
+            <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
+                <Label Text="&#xf2bb;"
+                       FontFamily="FontAwesome"
+                       VerticalOptions="Center" />
+                <Label Text="Register" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer x:Name="TapRegister" Tapped="TapRegister_Tapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
 
         <ActivityIndicator Grid.Row="4" 
                            x:Name="LoadingIndicator"
