@@ -6,22 +6,32 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{StaticResource Background}">
 
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*"
-          RowSpacing="20"
-          Margin="20,150,20,40">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*"
+          RowSpacing="20">
 
-        <Image Grid.Row="0"
+        <HorizontalStackLayout Grid.Row="0"
+                               Spacing="2"
+                               Margin="10,10,0,150">
+            <Label Text="&#xf060;" FontFamily="FontAwesome" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center"/>
+            <Label Text="Homepage" FontAttributes="Bold" FontSize="Medium">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer x:Name="TapBackHomepage" Tapped="TapBackHomepage_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+
+        <Image Grid.Row="1"
                Source="fwslogo.png"
                Aspect="AspectFit"
                HeightRequest="100"
                WidthRequest="100" />
 
-        <Label Grid.Row="1"
+        <Label Grid.Row="2"
                Text="Login"
                FontAttributes="Bold"
                HorizontalOptions="Center" />
 
-        <Frame Grid.Row="2"
+        <Frame Grid.Row="3"
                Padding="15">
 
             <VerticalStackLayout>
@@ -35,7 +45,7 @@
             </VerticalStackLayout>
         </Frame>
 
-        <Frame Grid.Row="3"
+        <Frame Grid.Row="4"
                x:Name="FrameLogin"
                Padding="0"
                CornerRadius="10"
@@ -52,7 +62,7 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <Label Grid.Row="4"
+        <Label Grid.Row="5"
                Text="Forgot your password ? " 
                HorizontalOptions="Center">
             <Label.GestureRecognizers>
@@ -60,13 +70,13 @@
             </Label.GestureRecognizers>
         </Label>
 
-        <ActivityIndicator Grid.Row="5" 
+        <ActivityIndicator Grid.Row="6" 
                    x:Name="LoadingIndicator"
                    HorizontalOptions="Center"
                    IsVisible="False" 
                    IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
 
-        <HorizontalStackLayout Grid.Row="6"
+        <HorizontalStackLayout Grid.Row="7"
                                Spacing="2"
                                HorizontalOptions="Center"
                                VerticalOptions="EndAndExpand">

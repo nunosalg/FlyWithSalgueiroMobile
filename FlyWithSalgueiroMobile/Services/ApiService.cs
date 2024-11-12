@@ -246,6 +246,47 @@ namespace FlyWithSalgueiroMobile.Services
             }
         }
 
+        public async Task<ApiResponse<bool>> BuyTicket(int flightId, string seat, string passengerName, string passengerId, DateTime passengerBirthDate, decimal price)
+        {
+            try
+            {
+                AddAuthorizationHeader();
+
+                var buyTicket = new BuyTicket()
+                {
+                    FlightId = flightId,
+                    Seat = seat,
+                    PassengerName = passengerName,
+                    PassengerId = passengerId,
+                    PassengerBirthDate = passengerBirthDate,
+                    Price = price
+                };
+
+                var json = JsonSerializer.Serialize(buyTicket, _serializerOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await PostRequest("api/Flights/BuyTicket", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError($"Error sending HTTP requisition: {response.StatusCode}");
+                    return new ApiResponse<bool>
+                    {
+                        ErrorMessage = $"Error sending HTTP requisition: {response.StatusCode}"
+                    };
+                }
+
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<BuyTicket>(jsonResult, _serializerOptions);
+
+                return new ApiResponse<bool> { Data = true };
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error buying ticket : {ex.Message}");
+                return new ApiResponse<bool> { ErrorMessage = ex.Message };
+            }
+        }
+
         private async Task<HttpResponseMessage> PostRequest(string uri, HttpContent content)
         {
             var urlAddress = _baseUrl + uri;
@@ -378,6 +419,20 @@ namespace FlyWithSalgueiroMobile.Services
 
             string endpoint = "api/customerflights/futureflights";
             return await GetAsync<IEnumerable<Ticket>>(endpoint);
+        }
+
+        public async Task<(IEnumerable<string>? AvailableSeats, string? ErrorMessage)> GetAvailableSeats(int flightId)
+        {
+            string endpoint = "api/flights/availableseats";
+            endpoint += $"?flightId={flightId}";
+            return await GetAsync<IEnumerable<string>>(endpoint);
+        }
+
+        public async Task<(decimal TicketPrice, string? ErrorMessage)> GetTicketPrice(int flightId)
+        {
+            string endpoint = "api/flights/ticketprice";
+            endpoint += $"?flightId={flightId}";
+            return await GetAsync<decimal>(endpoint);
         }
 
         private async Task<(T? Data, string? ErrorMessage)> GetAsync<T>(string endpoint)

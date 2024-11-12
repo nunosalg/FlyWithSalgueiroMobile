@@ -15,12 +15,14 @@ namespace FlyWithSalgueiroMobile
             _apiService = apiService;
             _validator = validator;
 
+            Routing.RegisterRoute(nameof(BuyTicketPage), typeof(BuyTicketPage));
+
             ConfigureShell();
         }
 
         private void ConfigureShell()
         {
-            var homePage = new HomePage(_apiService);
+            var homePage = new HomePage(_apiService, _validator);
             var futureFlightsPage = new FutureFlightsPage(_apiService);
             var flightsHistoryPage = new FlightsHistoryPage(_apiService);
             var accountPage = new AccountPage(_apiService, _validator);

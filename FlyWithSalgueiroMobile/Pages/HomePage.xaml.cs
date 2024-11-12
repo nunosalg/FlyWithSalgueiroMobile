@@ -1,24 +1,27 @@
 using FlyWithSalgueiroMobile.Models;
 using FlyWithSalgueiroMobile.Services;
+using FlyWithSalgueiroMobile.Validations;
 
 namespace FlyWithSalgueiroMobile.Pages;
 
 public partial class HomePage : ContentPage
 {
     private readonly IApiService _apiService;
+    private readonly IValidator _validator;
     private IEnumerable<City>? _cities = new List<City>();
 
-    public HomePage(IApiService apiService)
+    public HomePage(IApiService apiService, IValidator validator)
 	{
 		InitializeComponent();
         _apiService = apiService;
-
-        datePicker.MinimumDate = DateTime.Today;
+        _validator = validator;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        datePicker.MinimumDate = DateTime.Today;
 
         var (response, errorMessage) = await _apiService.GetCities();
         if (response == null)
@@ -84,11 +87,20 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private void TapBuyTicket_Tapped(object sender, TappedEventArgs e)
+    private async void TapBuyTicket_Tapped(object sender, TappedEventArgs e)
     {
-        if(e.Parameter is int flightId)
+        if (e.Parameter is not int flightId)
+            return;
+
+        var token = Preferences.Get("accesstoken", string.Empty);
+
+        if (string.IsNullOrEmpty(token))
         {
-            Navigation.PushAsync(new BuyTicketPage(_apiService, flightId));
+            await Navigation.PushAsync(new LoginPage(_apiService, _validator, flightId));
+        }
+        else
+        {
+            await Navigation.PushAsync(new BuyTicketPage(_apiService, _validator, flightId));
         }
     }
 }

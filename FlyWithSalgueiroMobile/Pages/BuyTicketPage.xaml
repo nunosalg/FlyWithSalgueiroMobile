@@ -2,11 +2,122 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlyWithSalgueiroMobile.Pages.BuyTicketPage"
-             Title="BuyTicketPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Buy Ticket"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True">
+
+    <ScrollView>
+        <Grid>
+            <Image Source="fswbackground.jpg"
+                   Aspect="AspectFill"
+                   IsVisible="True" />
+            <Grid RowDefinitions="Auto,Auto,Auto,*"
+                  RowSpacing="20"
+                  Margin="20,50,20,40">
+
+                <VerticalStackLayout Grid.Row="0"
+                                    Spacing="2">
+
+                    <Label Text="The Best Destinations and Ticket Prices"
+                           FontAttributes="Bold"
+                           FontSize="30"/>
+                    <Label Text="Book your next journey with ease!"
+                           FontAttributes="Bold"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1"
+                                     Margin="0,40"
+                                     Spacing="10">
+                    <Label Text="Passenger Info"
+                           FontAttributes="Bold"/>
+                    <Frame CornerRadius="10" Padding="0">
+                        <Entry Placeholder="Passenger first name"
+                               x:Name="EntFirstName"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                               FontAttributes="Bold"/>
+                    </Frame>
+
+                    <Frame CornerRadius="10" Padding="0">
+                        <Entry Placeholder="Passenger last name"
+                               x:Name="EntLastName"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                               FontAttributes="Bold"/>
+                    </Frame>
+
+                    <Frame CornerRadius="10" Padding="0">
+                        <Entry Placeholder="Passenger ID"
+                               x:Name="EntId"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"
+                               FontAttributes="Bold"/>
+                    </Frame>
+
+                    <Label Text="Birth Date"
+                           FontAttributes="Bold"
+                           Margin="3,0">
+                    </Label>
+                    <Frame CornerRadius="10" Padding="0">
+                        <DatePicker x:Name="DateOfBirthPicker"
+                                    Format="D" 
+                                    MinimumDate="1900-01-01"
+                                    FontAttributes="Bold"
+                                    TextColor="{AppThemeBinding Light={StaticResource Dark}, Dark={StaticResource White}}"
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Dark}}"/>
+                    </Frame>
+
+                    <Label Text="Select Seat"
+                           FontAttributes="Bold"
+                           Margin="3,0"/>
+                    <Frame CornerRadius="10" Padding="0">
+                        <Picker x:Name="AvailableSeatsPicker"
+                                FontAttributes="Bold"/>
+                    </Frame>
+
+                    <Label Text="Price"
+                           FontAttributes="Bold"
+                           Margin="3,0"/>
+                    <Frame CornerRadius="10" Padding="0">
+                        <Entry x:Name="EntPrice"
+                               FontAttributes="Bold"
+                               IsEnabled="False"/>
+                    </Frame>
+
+                    <Frame 
+                           x:Name="FrameBuyTicket"
+                           Padding="0"
+                           CornerRadius="10"
+                           BackgroundColor="{StaticResource ButtonPrimary}"
+                           BorderColor="Transparent">
+                        <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
+                            <Label Text="&#xf145;"
+                                   FontFamily="FontAwesome"
+                                   VerticalOptions="Center" />
+                            <Label Text="Buy Ticket"/>
+                        </HorizontalStackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapBuyTicket" Tapped="TapBuyTicket_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </VerticalStackLayout>
+
+                <ActivityIndicator Grid.Row="2" 
+                                   x:Name="LoadingIndicator"
+                                   HorizontalOptions="Center"
+                                   IsVisible="False" 
+                                   IsRunning="{Binding IsVisible, Source={x:Reference LoadingIndicator}}" />
+
+                <HorizontalStackLayout Grid.Row="3"
+                                       Spacing="2" 
+                                       HorizontalOptions="Center"                      
+                                       VerticalOptions="EndAndExpand">
+
+                    <Label Text="&#xf015;" FontFamily="FontAwesome" TextColor="{StaticResource Gray600}" FontAttributes="Bold" FontSize="Medium"/>
+                    <Label Text="Go back" TextColor="{StaticResource Gray600}" FontAttributes="Bold" FontSize="Medium">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapBackHomepage" Tapped="TapBackHomepage_Tapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>

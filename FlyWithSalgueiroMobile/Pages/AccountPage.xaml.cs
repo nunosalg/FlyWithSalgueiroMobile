@@ -16,7 +16,6 @@ public partial class AccountPage : ContentPage
         LblUserName.Text = Preferences.Get("username", string.Empty);
         EntFirstName.Text = Preferences.Get("firstname", string.Empty);
         EntLastName.Text = Preferences.Get("lastname", string.Empty);
-        EntCurrentPassword.Text = Preferences.Get("password", string.Empty);
 
         _apiService = apiService;
         _validator = validator;

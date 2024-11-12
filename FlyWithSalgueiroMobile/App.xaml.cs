@@ -28,8 +28,10 @@ namespace FlyWithSalgueiroMobile
                 MainPage = new NavigationPage(new LoginPage(_apiService, _validator));
                 return;
             }
-
-            MainPage = new AppShell(_apiService, _validator);
+            else
+            {
+                MainPage = new AppShell(_apiService, _validator);
+            }
         }
     }
 }

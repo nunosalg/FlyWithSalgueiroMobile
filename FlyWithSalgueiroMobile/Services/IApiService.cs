@@ -18,6 +18,8 @@ namespace FlyWithSalgueiroMobile.Services
 
         Task<ApiResponse<bool>> ChangePassword(string oldPassword, string newPassword, string confirm);
 
+        Task<ApiResponse<bool>> BuyTicket(int flightId, string seat, string passengerName, string passengerId, DateTime passengerBirthDate, decimal price);
+
         Task<(ProfileImage? ProfileImage, string? ErrorMessage)> GetUserProfileImage();
 
         Task<(IEnumerable<City>? Cities, string? ErrorMessage)> GetCities();
@@ -29,5 +31,9 @@ namespace FlyWithSalgueiroMobile.Services
         Task<(IEnumerable<TicketHistory>? TicketsHistory, string? ErrorMessage)> GetFlightsHistory();
 
         Task<(IEnumerable<Ticket>? Tickets, string? ErrorMessage)> GetFutureFlights();
+
+        Task<(IEnumerable<string>? AvailableSeats, string? ErrorMessage)> GetAvailableSeats(int flightId);
+
+        Task<(decimal TicketPrice, string? ErrorMessage)> GetTicketPrice(int flightId);
     }
 }
