@@ -1,80 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FlyWithSalgueiroMobile.Pages.HomePage"
-             Shell.FlyoutBehavior="Disabled"
-             Title="Home Page"
-             NavigationPage.HasNavigationBar="False">
-
+             x:Class="FlyWithSalgueiroMobile.Pages.SearchFlightsPage"
+             Title="Search Flights">
     <ScrollView>
         <Grid>
             <Image Source="fswbackground.jpg"
-           Aspect="AspectFill"
-           IsVisible="True" />
+               Aspect="AspectFill"
+               IsVisible="True" />
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*"
-                  RowSpacing="20"
-                  Margin="20,20,20,0">
-                
-                <HorizontalStackLayout Grid.Row="0"
-                       Spacing="2"
-                       Margin="0,0,0,20">
-                    <Label Text="&#xf2f6;" FontFamily="FontAwesome" FontAttributes="Bold" FontSize="Medium" VerticalOptions="Center"/>
-                    <Label Text="Login" FontAttributes="Bold" FontSize="Medium">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="TapLoginPage" Tapped="TapLoginPage_Tapped"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
-                
-                <VerticalStackLayout Grid.Row="1"
-                             Spacing="2">
+              RowSpacing="20"
+              Margin="20,50,20,40">
+
+                <VerticalStackLayout Grid.Row="0"
+                                 Spacing="2">
 
                     <Label Text="Better Ticket Prices For The Best Destinations"
-                   FontAttributes="Bold"
-                   FontSize="30"/>
+                       FontAttributes="Bold"
+                       FontSize="30"/>
                     <Label Text="Book your next journey with ease!"
-                   FontAttributes="Bold"/>
+                       FontAttributes="Bold"/>
                 </VerticalStackLayout>
 
-                <Grid Grid.Row="2"
-                      Margin="0,40">
+                <Grid Grid.Row="1"
+                  Margin="0,40">
 
                     <VerticalStackLayout>
                         <Label Text="Search Flights"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
 
                         <Label Text="Select origin"
-                       FontAttributes="Bold"
-                       Margin="5,11">
+                           FontAttributes="Bold"
+                           Margin="5,11">
                         </Label>
                         <Border Padding="0">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
                             <Picker x:Name="originPicker"
-                            FontAttributes="Bold"
-                            ItemDisplayBinding="{Binding Name}"/>
+                                FontAttributes="Bold"
+                                ItemDisplayBinding="{Binding Name}"/>
                         </Border>
 
 
                         <Label Text="Select destination"
-                       FontAttributes="Bold"
-                       Margin="5,11">
+                           FontAttributes="Bold"
+                           Margin="5,11">
                         </Label>
                         <Border Padding="0">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="10"/>
                             </Border.StrokeShape>
                             <Picker x:Name="destinationPicker"
-                            FontAttributes="Bold"
-                            ItemDisplayBinding="{Binding Name}"/>
+                                FontAttributes="Bold"
+                                ItemDisplayBinding="{Binding Name}"/>
                         </Border>
 
                         <HorizontalStackLayout>
                             <Label Text="Search by date"
-                           FontAttributes="Bold"
-                           Margin="5,11"/>
+                               FontAttributes="Bold"
+                               Margin="5,11"/>
                             <CheckBox x:Name="dateCheckbox" IsChecked="True"/>
                         </HorizontalStackLayout>
                         <Border Padding="0">
@@ -89,14 +75,14 @@
                 </Grid>
 
                 <Frame Grid.Row="3"
-               Padding="0"
-               CornerRadius="10"
-               BackgroundColor="{StaticResource Background}"
-               BorderColor="Transparent">
+                   Padding="0"
+                   CornerRadius="10"
+                   BackgroundColor="{StaticResource Background}"
+                   BorderColor="Transparent">
                     <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
                         <Label Text="&#xf002;"
-                       FontFamily="FontAwesome"
-                       VerticalOptions="Center" />
+                           FontFamily="FontAwesome"
+                           VerticalOptions="Center" />
                         <Label Text="Search"/>
                     </HorizontalStackLayout>
                     <Frame.GestureRecognizers>
@@ -105,12 +91,12 @@
                 </Frame>
 
                 <CollectionView x:Name="flightResults"
-                        Grid.Row="4"
-                        IsVisible="False">
+                            Grid.Row="4"
+                            IsVisible="False">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="10"
-                                Margin="0,10" >
+                                    Margin="0,10">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10"/>
                                 </Border.StrokeShape>
@@ -138,20 +124,20 @@
                                     </HorizontalStackLayout>
 
                                     <Frame Padding="0"
-                                   Margin="0,5,0,0"
-                                   CornerRadius="10"
-                                   BackgroundColor="{StaticResource Background}"
-                                   BorderColor="Transparent">
+                                       Margin="0,5,0,0"
+                                       CornerRadius="10"
+                                       BackgroundColor="{StaticResource Background}"
+                                       BorderColor="Transparent">
                                         <HorizontalStackLayout Spacing="5" Padding="10" HorizontalOptions="Center">
                                             <Label Text="&#xf145;"
-                                           FontFamily="FontAwesome"
-                                           VerticalOptions="Center" />
+                                               FontFamily="FontAwesome"
+                                               VerticalOptions="Center" />
                                             <Label Text="Buy Ticket"/>
                                         </HorizontalStackLayout>
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer x:Name="TapBuyTicket" 
-                                                          Tapped="TapBuyTicket_Tapped"
-                                                          CommandParameter="{Binding Id}"/>
+                                                              Tapped="TapBuyTicket_Tapped"
+                                                              CommandParameter="{Binding Id}"/>
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                 </StackLayout>

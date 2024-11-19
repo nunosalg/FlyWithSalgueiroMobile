@@ -19,7 +19,7 @@ public partial class FlightsHistoryPage : ContentPage
         var (response, errorMessage) = await _apiService.GetFlightsHistory();
         if (response == null)
         {
-            await DisplayAlert("Error", "No flights history found", "Ok");
+            await DisplayAlert("Info", "No flights history found", "Ok");
             return;
         }
 

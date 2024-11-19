@@ -51,9 +51,7 @@
                                     <HorizontalStackLayout>
                                         <Label Text="&#xf007;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>
                                         <Label Text="{Binding PassengerName}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                        <Label Text=" (ID: " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                        <Label Text="{Binding PassengerId}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                                        <Label Text=")" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding PassengerId, StringFormat=' (ID: {0})'}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>
                                         <Label Text="&#xf6c0;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0,10,0"/>

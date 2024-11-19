@@ -4,13 +4,13 @@ using FlyWithSalgueiroMobile.Validations;
 
 namespace FlyWithSalgueiroMobile.Pages;
 
-public partial class HomePage : ContentPage
+public partial class SearchFlightsPage : ContentPage
 {
     private readonly IApiService _apiService;
     private readonly IValidator _validator;
     private IEnumerable<City>? _cities = new List<City>();
 
-    public HomePage(IApiService apiService, IValidator validator)
+    public SearchFlightsPage(IApiService apiService, IValidator validator)
 	{
 		InitializeComponent();
         _apiService = apiService;
@@ -46,7 +46,7 @@ public partial class HomePage : ContentPage
         var selectedOrigin = originPicker.SelectedItem as City;
         var selectedDestination = destinationPicker.SelectedItem as City;
 
-        if(selectedOrigin != null && selectedDestination != null && selectedOrigin.Name == selectedDestination.Name)
+        if (selectedOrigin != null && selectedDestination != null && selectedOrigin.Name == selectedDestination.Name)
         {
             await DisplayAlert("Error", "Origin and destination must be different", "Ok");
             return;
@@ -55,21 +55,21 @@ public partial class HomePage : ContentPage
         DateTime? selectedDate = null;
         if (dateCheckbox.IsChecked)
         {
-            selectedDate = datePicker.Date; 
+            selectedDate = datePicker.Date;
         }
 
-        if((selectedOrigin == null || selectedOrigin.Id < 1) && (selectedDestination == null || selectedDestination.Id < 1) && selectedDate == null)
+        if ((selectedOrigin == null || selectedOrigin.Id < 1) && (selectedDestination == null || selectedDestination.Id < 1) && selectedDate == null)
         {
             await DisplayAlert("Error", "Choose the origin, destination or flight date", "Ok");
             return;
-        } 
-        
-        if(selectedOrigin?.Id == 0)
+        }
+
+        if (selectedOrigin?.Id == 0)
         {
             selectedOrigin = null;
         }
 
-        if(selectedDestination?.Id == 0)
+        if (selectedDestination?.Id == 0)
         {
             selectedDestination = null;
         }
@@ -92,11 +92,16 @@ public partial class HomePage : ContentPage
         if (e.Parameter is not int flightId)
             return;
 
-        await Navigation.PushAsync(new LoginPage(_apiService, _validator, flightId));
-    }
+        var token = Preferences.Get("accesstoken", string.Empty);
 
-    private async void TapLoginPage_Tapped(object sender, TappedEventArgs e)
-    {
-        await Navigation.PushAsync(new LoginPage(_apiService, _validator));
+        if (string.IsNullOrEmpty(token))
+        {
+            await Navigation.PushAsync(new LoginPage(_apiService, _validator, flightId));
+        }
+        else
+        {
+            await Navigation.PushAsync(new BuyTicketPage(_apiService, _validator, flightId));
+        }
+
     }
 }

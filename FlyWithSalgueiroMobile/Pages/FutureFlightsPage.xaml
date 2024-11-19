@@ -34,12 +34,14 @@
                                     <Label Text="{Binding FlightNumber}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" HorizontalOptions="Center" FontAttributes="Bold"/>
                                     <HorizontalStackLayout>
                                         <Label Text="&#xf5b0;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
-                                        <Label Text="{Binding Origin, StringFormat='{0}, '}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding Origin, StringFormat='{0}'}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                         <Label Text="{Binding OriginAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>
                                         <Label Text="&#xf5af;" FontFamily="FontAwesome" FontAttributes="Bold" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" Margin="5,0"/>
-                                        <Label Text="{Binding Destination, StringFormat='{0}, '}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text="{Binding Destination, StringFormat='{0}'}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                                        <Label Text=", " TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                         <Label Text="{Binding DestinationAirport}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                                     </HorizontalStackLayout>
                                     <HorizontalStackLayout>

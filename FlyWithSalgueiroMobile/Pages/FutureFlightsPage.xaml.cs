@@ -19,7 +19,7 @@ public partial class FutureFlightsPage : ContentPage
         var (response, errorMessage) = await _apiService.GetFutureFlights();
         if (response == null)
         {
-            await DisplayAlert("Error", "No future flights found", "Ok");
+            await DisplayAlert("Info", "No future flights found", "Ok");
             return;
         }
 

@@ -11,7 +11,7 @@ namespace FlyWithSalgueiroMobile.Services
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<ApiService> _logger;
-        private readonly string _baseUrl = "https://lzl75nls-44301.uks1.devtunnels.ms/";
+        private readonly string _baseUrl = AppConfig.BaseUrl;
 
         JsonSerializerOptions _serializerOptions;
         public ApiService(HttpClient httpClient, ILogger<ApiService> logger)

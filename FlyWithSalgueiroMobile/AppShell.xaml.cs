@@ -22,7 +22,7 @@ namespace FlyWithSalgueiroMobile
 
         private void ConfigureShell()
         {
-            var homePage = new HomePage(_apiService, _validator);
+            var homePage = new SearchFlightsPage(_apiService, _validator);
             var futureFlightsPage = new FutureFlightsPage(_apiService);
             var flightsHistoryPage = new FlightsHistoryPage(_apiService);
             var accountPage = new AccountPage(_apiService, _validator);

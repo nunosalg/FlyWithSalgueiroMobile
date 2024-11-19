@@ -97,7 +97,7 @@ public partial class BuyTicketPage : ContentPage
         if (!response.HasError)
         {
             await DisplayAlert("Info", "Ticket bought successfully!", "Ok");
-            await Navigation.PushAsync(new HomePage(_apiService, _validator));
+            await Navigation.PushAsync(new SearchFlightsPage(_apiService, _validator));
         }
         else
         {
@@ -110,6 +110,6 @@ public partial class BuyTicketPage : ContentPage
 
     private async void TapBackHomepage_Tapped(object sender, TappedEventArgs e)
     {
-        await Navigation.PushAsync(new HomePage(_apiService, _validator));
+        await Navigation.PushAsync(new SearchFlightsPage(_apiService, _validator));
     }
 }
